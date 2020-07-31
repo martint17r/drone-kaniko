@@ -50,6 +50,10 @@ if [ -n "${PLUGIN_CACHE_TTL:-}" ]; then
     CACHE_TTL="--cache-ttl=${PLUGIN_CACHE_TTL}"
 fi
 
+if [ -n "${PLUGIN_REPRODUCIBLE:-}" ]; then
+    REPRODUCIBLE="--reproducible"
+fi
+
 if [ -n "${PLUGIN_BUILD_ARGS:-}" ]; then
     BUILD_ARGS=$(echo "${PLUGIN_BUILD_ARGS}" | tr ',' '\n' | while read build_arg; do echo "--build-arg=${build_arg}"; done)
 fi
@@ -105,5 +109,6 @@ fi
     ${CACHE_TTL:-} \
     ${CACHE_REPO:-} \
     ${TARGET:-} \
+    ${REPRODUCIBLE:-} \
     ${BUILD_ARGS:-} \
     ${BUILD_ARGS_FROM_ENV:-}
