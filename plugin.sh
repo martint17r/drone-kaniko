@@ -38,6 +38,14 @@ if [[ "${PLUGIN_SKIP_TLS_VERIFY:-}" == "true" ]]; then
     EXTRA_OPTS="--skip-tls-verify=true"
 fi
 
+if [[ -n "${PLUGIN_SNAPSHOTMODE:-}" ]]; then
+    SNAPSHOTMODE="--snapshotMode=${PLUGIN_SNAPSHOTMODE}"
+fi
+
+if [[ "${PLUGIN_USENEWRUN:-}" == "true" ]]; then
+    NEWRUNMODE="--use-new-run"
+fi
+
 if [[ "${PLUGIN_CACHE:-}" == "true" ]]; then
     CACHE="--cache=true"
 fi
@@ -108,6 +116,8 @@ fi
     ${CACHE:-} \
     ${CACHE_TTL:-} \
     ${CACHE_REPO:-} \
+    ${SNAPSHOTMODE:-} \
+    ${NEWRUNMODE:-} \
     ${TARGET:-} \
     ${REPRODUCIBLE:-} \
     ${BUILD_ARGS:-} \
